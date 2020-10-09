@@ -11,7 +11,7 @@ $ su
 
 \# chmod +x root_install_for_user.sh
 
-\# ./root_install_for_user.sh -u <USER>
+\# ./root_install_for_user.sh -u \<USER\>
   
 \# exit
 
