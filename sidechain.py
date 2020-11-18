@@ -38,10 +38,14 @@ while True:
         pk=publicKey["result"]["proposition"]["publicKey"]
         print(pk)
     
-    if (choice == 5):
+     if (choice == 5):
         v=input('value= ')
         u=input('fee= ')
-        os.system('curl -X POST "http://127.0.0.1:9085/transaction/sendCoinsToAddress" -H "accept: application/json" -H "Content-Type: application/json" -d "{\\"outputs\\":[{\\"publicKey\\":\\"'+pk+'\\",\\"value\\":'+v+'}],\\"fee\\":'+u+'}"')
+        i=input('Your publicKey or 0 for the generated one= ')
+        if i==0:
+            os.system('curl -X POST "http://127.0.0.1:9085/transaction/sendCoinsToAddress" -H "accept: application/json" -H "Content-Type: application/json" -d "{\\"outputs\\":[{\\"publicKey\\":\\"'+pk+'\\",\\"value\\":'+v+'}],\\"fee\\":'+u+'}"')
+        else:
+            os.system('curl -X POST "http://127.0.0.1:9085/transaction/sendCoinsToAddress" -H "accept: application/json" -H "Content-Type: application/json" -d "{\\"outputs\\":[{\\"publicKey\\":\\"'+i+'\\",\\"value\\":'+v+'}],\\"fee\\":'+u+'}"')
 
     if (choice == 0):
         break
