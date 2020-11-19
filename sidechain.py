@@ -13,11 +13,19 @@ print('Enter 4 to Generate a new adress \n')
 
 print('Enter 5 to Send coins \n')
 
+print('Enter 6 to Check pending transactions \n')
+
 print('Enter 0 to exit')
 
 
 adress=''
-z=''
+i=''
+pk=''
+x=''
+y=''
+v=''
+u=''
+tf=''
 while True:
     choice = int(input('Enter your choice:'))
     if (choice == 1):
@@ -46,6 +54,9 @@ while True:
             os.system('curl -X POST "http://127.0.0.1:9085/transaction/sendCoinsToAddress" -H "accept: application/json" -H "Content-Type: application/json" -d "{\\"outputs\\":[{\\"publicKey\\":\\"'+pk+'\\",\\"value\\":'+v+'}],\\"fee\\":'+u+'}"')
         else:
             os.system('curl -X POST "http://127.0.0.1:9085/transaction/sendCoinsToAddress" -H "accept: application/json" -H "Content-Type: application/json" -d "{\\"outputs\\":[{\\"publicKey\\":\\"'+i+'\\",\\"value\\":'+v+'}],\\"fee\\":'+u+'}"')
-
+    if (choice == 6):
+         tf=input('format= ')
+         os.system('curl -X POST "http://127.0.0.1:9085/transaction/allTransactions" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"format\":'+tf+'}"')
+   
     if (choice == 0):
         break
