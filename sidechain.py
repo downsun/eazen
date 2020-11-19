@@ -38,7 +38,7 @@ while True:
         pk=publicKey["result"]["proposition"]["publicKey"]
         print(pk)
     
-     if (choice == 5):
+    if (choice == 5):
         v=input('value= ')
         u=input('fee= ')
         i=input('Your publicKey or 0 for the generated one= ')
