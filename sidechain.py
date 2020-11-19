@@ -29,7 +29,7 @@ tf=''
 while True:
     choice = int(input('Enter your choice:'))
     if (choice == 1):
-        os.system('curl -X POST "http://127.0.0.1:9085/wallet/createPrivateKey25519" -H "accept: application/json"')
+        os.system('curl -X POST "http://127.0.0.1:9085/block/forgingInfo" -H "accept: application/json" -H "Content-Type: application/json"')
     
     if (choice == 2):
         os.system('curl -X POST "http://127.0.0.1:9085/wallet/balance" -H "accept: application/json" -H "Content-Type: application/json"')
