@@ -1,6 +1,5 @@
 #!/bin/bash
-​
-​
+
 while getopts :u: opt ; do
 case $opt in
 u) ZENDOO_USER=$OPTARG
@@ -8,6 +7,7 @@ u) ZENDOO_USER=$OPTARG
 esac
 done
 echo "ZENDOO_USER = $ZENDOO_USER"
+echo "export ZENDOO_USER=$ZENDOO_USER" >> /home/$ZENDOO_USER/.bashrc
 export ZENDOO_DIR=/opt/zend_oo
 export ZENDOO_CONF_DIR=~/.zen
 export ZENDOO_CONF_FILE=$ZENDOO_CONF_DIR/zen.conf
