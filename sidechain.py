@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import json
 
 print('Enter 1 to Get the mainchain balance \n')
 
