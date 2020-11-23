@@ -77,7 +77,7 @@ GENERATE=`echo $GENERATE1 | jq -r .[0]`
 sleep 2
 
 zen-cli getblock "$GENERATE"
-sleep 10
+sleep 5
 zen-cli gettransaction "$TXID" | grep confirmations
 sleep 10
 
