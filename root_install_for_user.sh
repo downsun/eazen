@@ -13,7 +13,7 @@ export ZENDOO_CONF_DIR=~/.zen
 export ZENDOO_CONF_FILE=$ZENDOO_CONF_DIR/zen.conf
 export ZENDOO_USER=$ZENDOO_USER
 apt -y update && apt -y upgrade
-apt -y install build-essential pkg-config libc6-dev m4 g++-multilib autoconf libtool ncurses-dev unzip git python zlib1g-dev bsdmainutils automake curl wget vim
+apt -y install build-essential pkg-config libc6-dev m4 g++-multilib autoconf libtool ncurses-dev unzip git python zlib1g-dev bsdmainutils automake curl wget vim sudo
 mkdir $ZENDOO_DIR
 chown $ZENDOO_USER:$ZENDOO_DIR
 git clone https://github.com/ZencashOfficial/zend_oo.git $ZENDOO_DIR
