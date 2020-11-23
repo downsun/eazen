@@ -3,15 +3,15 @@ Horizen easy
 
 # Install
 
-1) Copy root_install_for_user.sh or clone this repository
+1) Copy eazen.sh or SCeazen.sh or transferZen.py clone this repository
 
 2) Commands :
 
 $ su
 
-\# chmod +x root_install_for_user.sh
+\# chmod +x eazen.sh / SCeazen.sh / transferZen.py
 
-\# ./root_install_for_user.sh -u \<USER\>
+\# ./eazen.sh -u \<USER\>
   
 \# exit
 
