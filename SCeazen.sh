@@ -38,6 +38,7 @@ SEED4=`openssl rand -base64 32` && echo SEED4 = $SEED4 >> keys.txt
 GK1=`$BOOTSTRAP generatekey '{"seed": "'"$SEED1"'"}'`
 GKSECRET=`echo $GK1 | jq -r .secret` && echo GKSECRET = $GKSECRET >>keys.txt
 GKPUBLIC=`echo $GK1 | jq -r .publicKey` && echo GKPUBLIC = $GKPUBLIC >> keys.txt
+echo "export GKPUBLIC=$GKPUBLIC" >> ~/.bashrc/
 
 GVK=`$BOOTSTRAP generateVrfKey '{"seed": "'"$SEED2"'"}'`
 GVKSECRET=`echo $GVK | jq -r .vrfSecret` && echo GVKSECRET = $GVKSECRET >>keys.txt
@@ -76,6 +77,7 @@ CREATE=`zen-cli sc_create 10 "$GKPUBLIC" 100 "$GPIVK" "$GVKPUBLIC" "$GPIGENSYS"`
 sleep 10
 TXID=`echo $CREATE | jq -r .txid`
 SCID=`echo $CREATE | jq -r .scid`
+echo "export SCID=$SCID" >> ~/.bashrc/
 
 GENERATE1=`zen-cli generate 1`
 sleep 10
