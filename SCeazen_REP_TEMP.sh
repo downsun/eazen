@@ -1,11 +1,5 @@
 #!/bin/bash
 
-while getopts :u: opt ; do
-case $opt in
-u) ZENDOO_USER=$OPTARG
-;;
-esac
-done
 sudo apt update
 sudo apt install net-tools jq -y
 sudo apt install -y software-properties-common
