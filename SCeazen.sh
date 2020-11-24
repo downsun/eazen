@@ -1,11 +1,5 @@
 #!/bin/bash
 
-while getopts :u: opt ; do
-case $opt in
-u) ZENDOO_USER=$OPTARG
-;;
-esac
-done
 sudo apt update
 sudo apt install net-tools jq -y
 sudo apt install -y software-properties-common
@@ -76,7 +70,7 @@ sleep 15
 CREATE=`zen-cli sc_create 10 "$GKPUBLIC" 100 "$GPIVK" "$GVKPUBLIC" "$GPIGENSYS"` && echo CREATE = $CREATE > id.json
 sleep 10
 TXID=`echo $CREATE | jq -r .txid`
-SCID=`echo $CREATE | jq -r .scid`
+SCID=`echo $CREATE | jq -r .scid` && echo SCID = $SCID >> keys.txt
 echo "export SCID=$SCID" >> ~/.bashrc/
 
 GENERATE1=`zen-cli generate 1`
