@@ -73,7 +73,7 @@ sleep 15
 CREATE=`zen-cli sc_create 10 "$GKPUBLIC" 100 "$GPIVK" "$GVKPUBLIC" "$GPIGENSYS"` && echo CREATE = $CREATE
 sleep 10
 TXID=`echo $CREATE | jq -r .txid`
-SCID=`echo $CREATE | jq -r .scid`
+SCID=`echo $CREATE | jq -r .scid` && echo SCID = $SCID >> keys.txt
 echo "export SCID=$SCID" >> ~/.bashrc/
 
 GENERATE1=`zen-cli generate 1`
