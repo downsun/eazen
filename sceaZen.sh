@@ -4,8 +4,11 @@ sudo apt update
 sudo apt install net-tools jq -y
 sudo apt install -y software-properties-common
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+sleep 3
 sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+sleep 3
 sudo apt update
+sleep 4
 sudo apt install adoptopenjdk-8-hotspot -y
 sudo apt install maven -y
 java -version
