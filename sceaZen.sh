@@ -4,11 +4,11 @@ sudo apt update
 sudo apt install net-tools jq -y
 sudo apt install -y software-properties-common
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
-sleep 3
+sleep 2
 sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-sleep 3
+sleep 2
 sudo apt update
-sleep 4
+sleep 2
 sudo apt install adoptopenjdk-8-hotspot -y
 sudo apt install maven -y
 java -version
@@ -38,7 +38,6 @@ SEED4=`openssl rand -base64 32` && echo SEED4 = $SEED4 >> keys.txt
 GK1=`$BOOTSTRAP generatekey '{"seed": "'"$SEED1"'"}'`
 GKSECRET=`echo $GK1 | jq -r .secret` && echo GKSECRET = $GKSECRET >>keys.txt
 GKPUBLIC=`echo $GK1 | jq -r .publicKey` && echo GKPUBLIC = $GKPUBLIC >> keys.txt
-echo "export GKPUBLIC=$GKPUBLIC" >> ~/.bashrc/
 
 GVK=`$BOOTSTRAP generateVrfKey '{"seed": "'"$SEED2"'"}'`
 GVKSECRET=`echo $GVK | jq -r .vrfSecret` && echo GVKSECRET = $GVKSECRET >>keys.txt
@@ -77,7 +76,6 @@ CREATE=`zen-cli sc_create 10 "$GKPUBLIC" 100 "$GPIVK" "$GVKPUBLIC" "$GPIGENSYS"`
 sleep 10
 TXID=`echo $CREATE | jq -r .txid`
 SCID=`echo $CREATE | jq -r .scid` && echo SCID = $SCID >> keys.txt
-echo "export SCID=$SCID" >> ~/.bashrc/
 
 GENERATE1=`zen-cli generate 1`
 sleep 10
@@ -98,7 +96,7 @@ EPOCH=`echo $GENESIS | jq -r .withdrawalEpochLength`
 
 cp examples/simpleapp/src/main/resources/settings_basic.conf examples/simpleapp/src/main/resources/my-sidechain.conf
 
-sed -i -e "s/seed1/$SEED4/" examples/simpleapp/src/main/resources/my-sidechain.conf
+sed -i -e "s/\"seed1\"/\"$SEED4\"/" examples/simpleapp/src/main/resources/my-sidechain.conf
 sed -i -e "s/signersPublicKeys =/signersPublicKeys = [\"$GPISCHPUB1\",\r\n\"$GPISCHPUB2\",\r\n\"$GPISCHPUB3\",\r\n\"$GPISCHPUB4\",\r\n\"$GPISCHPUB5\",\r\n\"$GPISCHPUB6\",\r\n\"$GPISCHPUB7\"\r\n]\r\n/" examples/simpleapp/src/main/resources/my-sidechain.conf
 sed -i -e "s/signersSecrets =/signersSecrets = [\"$GPISCHSEC1\",\r\n\"$GPISCHSEC2\",\r\n\"$GPISCHSEC3\",\r\n\"$GPISCHSEC4\",\r\n\"$GPISCHSEC5\",\r\n\"$GPISCHSEC6\",\r\n\"$GPISCHSEC7\"\r\n]\r\n/" examples/simpleapp/src/main/resources/my-sidechain.conf
 sed -i -e "s/signersThreshold =/signersThreshold = 5\r\n/" examples/simpleapp/src/main/resources/my-sidechain.conf
@@ -121,5 +119,7 @@ sed -i -e "s/seed1/$SEED4/" examples/simpleapp/src/main/resources/my-sidechain.c
 SSS=$(ls examples/simpleapp/target/sidechains-sdk-simpleapp-*.jar)
 
 java -cp ./$SSS:./examples/simpleapp/target/lib/* com.horizen.examples.SimpleApp ./examples/simpleapp/src/main/resources/my-sidechain.conf &
-
+cd ..
+echo "export SCID="$SCID"" >> .bashrc
+echo "export GKPUBLIC="$GKPUBLIC"" >> .bashrc 
 
