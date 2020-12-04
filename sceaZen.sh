@@ -20,9 +20,6 @@ sudo apt install sbt
 echo "Cloning Sidechains-SDK from the Horizen GitHub"
 git clone https://github.com/ZencashOfficial/Sidechains-SDK.git
 cd Sidechains-SDK/
-sed -i -e "s/org.ethereum/org.fusesource.leveldbjni/" sdk/pom.xml
-sed -i -e "s/leveldbjni-all/leveldbjni/" sdk/pom.xml
-sed -i -e "s/1.18.3/1.8/" sdk/pom.xml
 export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/
 mvn clean install
 if [[ "$?" -ne 0 ]] ; then
